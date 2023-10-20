@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <title>Solicitudes de Documentos - ULEAM</title>
+</head>
+<body>
+
+
+<!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="dashboard.html">
+            <img src="img/logo.png" alt="Logo" width="30" height="24" class="d-inline-block align-text-top">
+            Dashboard ULEAM
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+        </div>
+    </nav>
+
+
+<div class="container mt-4">
+    <div class="row">
+        <!-- Sidebar -->
+        <div class="col-md-3">
+            <div class="list-group">
+                <a href="dashboard.html" class="list-group-item list-group-item-action ">Inicio</a>
+                <a href="solicitud.html" class="list-group-item list-group-item-action ">Solicitudes</a>
+                <a href="estado.html" class="list-group-item list-group-item-action active">Estado de solicitudes</a>
+                <a href="documento.html" class="list-group-item list-group-item-action ">Documentos</a>
+                <a href="configuracion.html" class="list-group-item list-group-item-action">Configuración</a>
+            </div>
+        </div>
+
+        <!-- Contenido de Solicitud -->
+        <div class="col-md-9">
+            <h1 class="mt-4">Solicitudes de Documentos</h1>
+
+            <!-- Filtros -->
+            <div class="row">
+                <div class="col-md-3">
+                    <select class="form-control">
+                        <option value="todas">Todas las solicitudes</option>
+                        <option value="pendientes">Solicitudes pendientes</option>
+                        <option value="aprobadas">Solicitudes aprobadas</option>
+                    </select>
+                </div>
+                <div class="col-md-3">
+                    <select class="form-control">
+                        <option value="recientes">Más recientes</option>
+                        <option value="antiguas">Más antiguas</option>
+                    </select>
+                </div>
+                <div class="col-md-3">
+                    <input type="text" class="form-control" placeholder="Buscar..." required oninput="validateField(this)">
+                </div>
+                <div class="col-md-3">
+                    <button class="btn btn-primary">Aplicar Filtros</button>
+                </div>
+            </div>
+
+            <!-- Lista de Solicitudes -->
+            <table class="table mt-3">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Fecha de Solicitud</th>
+                        <th>Tipo de Solicitud</th>
+                        <th>Estado</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td>2023-10-01</td>
+                        <td>Promoción</td>
+                        <td>Pendiente</td>
+                        <td>
+                            <a href="#" class="ver-detalles">Ver Detalles</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>2023-09-15</td>
+                        <td>Recategorización</td>
+                        <td>Aprobada</td>
+                        <td>
+                            <a href="#" id="aprobado">Ver Detalles</a>
+                        </td>
+                    </tr>
+                    <!-- Agrega más filas de solicitud según sea necesario -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.32/dist/sweetalert2.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.32/dist/sweetalert2.min.css">
+
+<script src="/js/estado.js"></script>
+<script src="/js/generales.js"></script>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

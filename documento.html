@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <title>Solicitud de Documentos - ULEAM</title>
+    <style>
+        /* Estilo para ocultar la interfaz de subida de documentos */
+        .upload-interface {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="dashboard.html">
+        <img src="img/logo.png" alt="Logo" width="30" height="24" class="d-inline-block align-text-top">
+        Dashboard ULEAM
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+    </div>
+</nav>
+
+
+<div class="container mt-4">
+    <div class="row">
+        <!-- Sidebar -->
+        <div class="col-md-3">
+            <div class="list-group">
+                <a href="dashboard.html" class="list-group-item list-group-item-action">Inicio</a>
+                <a href="solicitud.html" class="list-group-item list-group-item-action">Solicitudes</a>
+                <a href="estado.html" class="list-group-item list-group-item-action">Estado de solicitudes</a>
+                <a href="documento.html" class="list-group-item list-group-item-action active">Documentos</a>
+                <a href="configuracion.html" class="list-group-item list-group-item-action ">Configuración</a>
+            </div>
+        </div>
+
+        <!-- Contenido para Subir Documentos -->
+        <div class="col-md-9">
+            <h1 class="mt-4">Lista de Documentos</h1>
+
+            <!-- Filtros -->
+            <div class="row">
+                <div class="col-md-3">
+                    <select class="form-control">
+                        <option value="todos">Todos los documentos</option>
+                        <option value="recientes">Documentos más recientes</option>
+                        <option value="categoria">Por categoría</option>
+                    </select>
+                </div>
+                <div class="col-md-3">
+                    <input type="text" class="form-control" placeholder="Buscar por nombre" required oninput="validateField(this)">
+                </div>
+                <div class="col-md-3">
+                    <button class="btn btn-primary">Buscar Documento</button>
+                </div>
+            </div>
+
+            <!-- Lista de Documentos -->
+            <table class="table mt-3">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Nombre del Documento</th>
+                        <th>Categoría</th>
+                        <th>Fecha de Subida</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody class="lista-documentos">
+                    <tr>
+                        <td>1</td>
+                        <td>Documento 1</td>
+                        <td>Categoría A</td>
+                        <td>2023-10-01</td>
+                        <td>
+                            <a href="#">Descargar</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>Documento 2</td>
+                        <td>Categoría B</td>
+                        <td>2023-09-15</td>
+                        <td>
+                            <a href="#">Descargar</a>
+                        </td>
+                    </tr>
+                    <!-- Agrega más filas de documentos según sea necesario -->
+                </tbody>
+            </table>
+
+            <div class="col-md-3">
+                <button class="btn btn-primary" onclick="mostrarInterfazSubida()">Subir Documento</button>
+            </div>
+            <!-- Interfaz de Subida de Documentos (estilo ventana emergente) -->
+            <div class="upload-interface">
+                <div class="card">
+                    <div class="card-header">
+                        Subir Documentos
+                    </div>
+                    <div class="card-body">
+                        <form class="mt-3" enctype="multipart/form-data">
+                            <div class="form-group">
+                                <label for="nombreDocumento">Nombre del Documento</label>
+                                <input type="text" class="form-control" id="nombreDocumento" placeholder="Nombre del documento">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="categoriaDocumento">Categoría del Documento</label>
+                                <select class="form-control" id="categoriaDocumento">
+                                    <option value="categoriaA">Categoría A</option>
+                                    <option value="categoriaB">Categoría B</option>
+                                    <option value="categoriaC">Categoría C</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="archivoDocumento">Seleccionar Archivo</label>
+                                <input type="file" class="form-control-file" id="archivoDocumento" accept=".pdf">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="descripcionDocumento">Descripción del Documento</label>
+                                <textarea class="form-control" id="descripcionDocumento" rows="4" placeholder="Agrega una descripción opcional del documento"></textarea>
+                            </div>
+
+                            <button type="submit" class="btn btn-primary">Subir</button>
+                            <button type="button" class="btn btn-secondary" onclick="volverAListaDocumentos()">Cancelar</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const enlacesDescargar = document.querySelectorAll('a[href="#"]');
+
+        enlacesDescargar.forEach(function(enlace) {
+            enlace.addEventListener('click', function(event) {
+                event.preventDefault(); // Esto prevendrá que el enlace realice su acción predeterminada
+
+                Swal.fire({
+                    title: 'Iniciando descarga',
+                    icon: 'info',
+                    text: 'La descarga comenzará en breve...',
+                });
+
+                // Simular la descarga (puedes reemplazar esto con la lógica de descarga real)
+            });
+        });
+    });
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.32/dist/sweetalert2.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.32/dist/sweetalert2.min.css">
+<script src="/js/generales.js"></script>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="/js/document.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

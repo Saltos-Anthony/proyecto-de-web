@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <title>Configuración - ULEAM</title>
+</head>
+<body>
+
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="dashboard.html">
+        <img src="img/logo.png" alt="Logo" width="30" height="24" class="d-inline-block align-text-top">
+        Dashboard ULEAM
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+    </div>
+</nav>
+
+
+<div class="container mt-4">
+    <div class="row">
+        <!-- Sidebar -->
+        <div class="col-md-3">
+            <div class="list-group">
+                <a href="dashboard.html" class="list-group-item list-group-item-action">Inicio</a>
+                <a href="solicitud.html" class="list-group-item list-group-item-action">Solicitudes</a>
+                <a href="estado.html" class="list-group-item list-group-item-action">Estado de solicitudes</a>
+                <a href="documento.html" class="list-group-item list-group-item-action">Documentos</a>
+                <a href="configuracion.html" class="list-group-item list-group-item-action active">Configuración</a>
+            </div>
+        </div>
+
+        <!-- Contenido para Configuración -->
+        <div class="col-md-9">
+
+           <!-- Formulario de Configuración -->
+            <form class="mt-4 border rounded p-4" onsubmit="return validarFormulario()">
+                <h1 class="mt-4">Configuración</h1>
+                <div class="row">
+                    <!-- Columna izquierda con campos de texto -->
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="nombre">Nombre:</label>
+                            <input type="text" class="form-control" id="nombre" placeholder="Nombre del usuario" required oninput="validateField(this)">
+                        </div>
+                        <div class="form-group">
+                            <label for="correo">Correo Electrónico:</label>
+                            <input type="email" class="form-control" id="registerInputEmail" placeholder="Correo electrónico" required oninput="validateEmail()">
+                            <p id="resultEmail" class="text-danger"></p>
+                        </div>
+                        <div class="form-group">
+                            <label for="password">Contraseña:</label>
+                            <input type="password" class="form-control" id="password" placeholder="Contraseña" required oninput="validatePassword()">
+                            <p id="resultPassword" class="text-danger"></p>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="confirmarPassword">Confirmar Contraseña:</label>
+                            <input type="password" class="form-control" id="confirmarPassword" placeholder="Confirmar contraseña" required oninput="verifyPasswords()">
+                            <p id="passwordMessage" class="text-danger"></p>
+                        </div>
+                        <div class="form-group">
+                            <label for="numeroCelular">Número de Celular:</label>
+                            <input type="tel" class="form-control" id="numeroCelular" placeholder="Número de celular" required oninput="validatePhone()">
+                            <p id="resultPhone" class="text-danger"></p>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="direccion">Dirección:</label>
+                            <input type="text" class="form-control" id="direccion" placeholder="Dirección" required oninput="validateField(this)">
+                        </div>
+                    </div>
+                    <!-- Columna derecha con opción para agregar foto y vista previa -->
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="foto">Agregar Foto:</label>
+                            <input type="file" class="form-control-file" id="foto" accept="image/*" onchange="mostrarVistaPrevia()">
+                        </div>
+                        <div class="text-center">
+                            <img id="vistaPrevia" src="placeholder.jpg" alt="Vista Previa" style="max-width: 100%; max-height: 200px;">
+                        </div>
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-primary">Guardar Configuración</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="/js/settings.js"></script>
+<script src="/js/generales.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

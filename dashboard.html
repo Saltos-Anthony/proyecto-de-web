@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <title>Solicitudes de Documentos - ULEAM</title>
+</head>
+<style>
+    .hide {
+        display: none;
+    }
+</style>
+<body>
+
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="dashboard.html">
+        <img src="img/logo.png" alt="Logo" width="30" height="24" class="d-inline-block align-text-top">
+        Dashboard ULEAM
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
+            aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+    </div>
+</nav>
+
+<div class="container mt-4">
+    <div class="row">
+        <!-- Sidebar -->
+        <div class="col-md-3">
+            <div class="list-group">
+                <a href="dashboard.html" class="list-group-item list-group-item-action active">Inicio</a>
+                <a href="solicitud.html" class="list-group-item list-group-item-action ">Solicitudes</a>
+                <a href="estado.html" class="list-group-item list-group-item-action ">Estado de solicitudes</a>
+                <a href="documento.html" class="list-group-item list-group-item-action ">Documentos</a>
+                <a href="configuracion.html" class="list-group-item list-group-item-action">Configuración</a>
+            </div>
+        </div>
+
+        <!-- Content -->
+        <div class="col-md-9">
+            <h1>Bienvenido al Dashboard de la ULEAM</h1>
+            <p>En esta plataforma, los docentes pueden realizar solicitudes y validar documentos relacionados con
+                promociones y recategorizaciones.</p>
+
+            <!-- Estadísticas -->
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="card text-center rounded p-3">
+                        <h5 class="card-title">Solicitudes Pendientes</h5>
+                        <p class="card-text">10</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card text-center rounded p-3">
+                    <h5 class="card-title">Documentos Validados</h5>
+                    <p class="card-text">25</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card text-center rounded p-3">
+                    <h5 class="card-title">Promociones Aceptadas</h5>
+                    <p class="card-text">5</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Formulario de Solicitud Rápida -->
+        <div class="mt-4">
+            <h2>Solicitud Rápida</h2>
+            <form id="solicitudForm">
+                <div class="form-group">
+                    <label for="motivo">Motivo de la Solicitud</label>
+                    <select class="form-control" id="motivo" required>
+                        <option value="">Selecciona un motivo</option>
+                        <option value="aumento_sueldo">Pedir aumento de sueldo</option>
+                        <option value="promocion_laboral">Pedir promoción laboral</option>
+                        <option value="otros">Otro motivo</option>
+                    </select>
+                </div>
+
+                <div class="mt-4 formulario hide" id="form_sueldo">
+                    <h2>Solicitud de Aumento de Sueldo</h2>
+                    <form id="aumentoForm">
+                        <div class="form-group">
+                            <label for="nombre">Nombre del Empleado:</label>
+                            <input type="text" class="form-control" id="nombre" placeholder="Nombre completo" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="departamento">Departamento:</label>
+                            <input type="text" class="form-control" id="departamento" placeholder="Departamento o área de trabajo" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="puesto">Puesto de Trabajo:</label>
+                            <input type="text" class="form-control" id="puesto" placeholder="Puesto actual" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="salarioActual">Salario Actual (anual):</label>
+                            <input type="number" class="form-control" id="salarioActual" placeholder="Salario anual actual" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="motivo">Motivo de la Solicitud:</label>
+                            <textarea class="form-control" id="motivo" rows="4" placeholder="Explica detalladamente por qué solicitas un aumento de sueldo" required></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="logros">Logros y Contribuciones:</label>
+                            <textarea class="form-control" id="logros" rows="4" placeholder="Enumera tus logros, responsabilidades y contribuciones en la empresa" required></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="salarioDeseado">Salario Deseado (anual):</label>
+                            <input type="number" class="form-control" id="salarioDeseado" placeholder="Salario anual deseado" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="observaciones">Observaciones Adicionales:</label>
+                            <textarea class="form-control" id="observaciones" rows="4" placeholder="Cualquier observación o información adicional que desees agregar"></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary enviar_solicitud">Enviar Solicitud de Aumento</button>
+                    </form>
+                </div>
+
+                <div class="mt-4 formulario hide" id="form_promocion">
+                    <h2>Solicitud de Promoción Laboral</h2>
+                    <form>
+                        <div class="form-group">
+                            <label for="nombre">Nombre del Empleado:</label>
+                            <input type="text" class="form-control" id="nombre" placeholder="Nombre completo" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="departamento">Departamento:</label>
+                            <input type="text" class="form-control" id="departamento" placeholder="Departamento o área de trabajo" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="puesto">Puesto de Trabajo Actual:</label>
+                            <input type="text" class="form-control" id="puesto" placeholder="Puesto actual" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="motivo">Motivo de la Solicitud:</label>
+                            <textarea class="form-control" id="motivo" rows="4" placeholder="Explica detalladamente por qué solicitas una promoción laboral" required></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="logros">Logros y Contribuciones:</label>
+                            <textarea class="form-control" id="logros" rows="4" placeholder="Enumera tus logros, responsabilidades y contribuciones en la empresa" required></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="observaciones">Observaciones Adicionales:</label>
+                            <textarea class="form-control" id="observaciones" rows="4" placeholder="Cualquier observación o información adicional que desees agregar"></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary enviar_solicitud">Enviar Solicitud de Promoción Laboral</button>
+                    </form>
+                </div>
+
+                <div class="mt-4 formulario hide" id="form_otros">
+                    <h2>Solicitud de Otros</h2>
+                    <form>
+                        <div class="form-group">
+                            <label for="nombre">Nombre:</label>
+                            <input type="text" class="form-control" id="nombre" placeholder="Nombre completo" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="motivo">Motivo de la Solicitud:</label>
+                            <textarea class="form-control" id="motivo" rows="6" placeholder="Describe detalladamente el motivo de tu solicitud" required></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="logros">Logros y Contribuciones (si aplicable):</label>
+                            <textarea class="form-control" id="logros" rows="6" placeholder="Enumera tus logros, responsabilidades y contribuciones relevantes" required></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="observaciones">Observaciones Adicionales (si aplicable):</label>
+                            <textarea class="form-control" id="observaciones" rows="6" placeholder="Cualquier observación o información adicional que desees agregar" required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary enviar_solicitud">Enviar Solicitud</button>
+                    </form>
+                </div>
+
+                <button type="submit" class="btn btn-primary hide">Enviar Solicitud</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.32/dist/sweetalert2.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.32/dist/sweetalert2.min.css">
+<script src="js/generales.js"></script>
+<script src="js/document.js"></script>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+        crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
